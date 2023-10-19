@@ -8,6 +8,7 @@ button {
   margin: 2rem;
   padding: 1rem 0 1rem 0;
   border: none;
+  border-radius: 0.2rem;
   width: 8rem;
   font-size: large;
   font-family: "Shippori Antique B1", sans-serif;
@@ -27,7 +28,8 @@ button {
 }
 
 .clear:hover {
-  background-color: #ffffff;
+  background-color: black;
+  color: #f4f4f4;
 }
 
 .keyword-container {

@@ -1,30 +1,32 @@
 const FilterContent = ({
   id,
-  area,
-  wideAreaChecked,
-  areaCheckboxes,
-  setAreaCheckboxes,
+  content,
+  titleChecked,
+  contentCheck,
+  setContentCheck,
 }) => {
-  const handleSubCheckboxChange = (subAreaIndex) => {
-    // Create a copy of the areaCheckboxes and toggle the sub-checkbox
-    const updatedAreaCheckboxes = [...areaCheckboxes]
-    updatedAreaCheckboxes[subAreaIndex] = !updatedAreaCheckboxes[subAreaIndex]
+  const handleSubCheckboxChange = (contentIndex) => {
+    const updatedContentCheck = [...contentCheck]
+    updatedContentCheck[contentIndex] =
+      !updatedContentCheck[contentIndex]
+    setContentCheck(updatedContentCheck)
 
-    // Call the provided setAreaCheckboxes function with the updated value
-    setAreaCheckboxes(updatedAreaCheckboxes)
+    console.log(updatedContentCheck)
   }
+
+
 
   return (
     <td>
-      {area.map((subArea, subAreaIndex) => (
-        <ul key={subAreaIndex}>
+      {content.map((content, contentIndex) => (
+        <ul key={contentIndex}>
           <input
             type="checkbox"
-            id={`select-${id}-${subAreaIndex}`}
-            checked={wideAreaChecked || setAreaCheckboxes[subAreaIndex]}
-            onChange={() => handleSubCheckboxChange(subAreaIndex)}
+            id={`select-${id}-${contentIndex}`}
+            checked={titleChecked || contentCheck[contentIndex]}
+            onChange={() => handleSubCheckboxChange(contentIndex)}
           />
-          <label htmlFor={`select-${id}-${subAreaIndex}`}>{subArea}</label>
+          <label htmlFor={`select-${id}-${contentIndex}`}>{content}</label>
         </ul>
       ))}
     </td>

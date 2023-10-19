@@ -1,44 +1,55 @@
 import { Areas, wideAreas } from "../../data"
-import { Conditions } from "../../data"
-import { IC } from "../../data"
+import { IC, Expressway } from "../../data"
+import { Conditions, allConditions } from "../../data"
 import { useState } from "react"
 import FilterContent from "./FilterContent"
 
 const Filter = () => {
-  // const initialCheckboxes = Areas.map((areas) => ({
-  //   wideArea: false,
-  //   areas: areas.area.map(() => false),
-  // }));
-
-  // const firstRowCheckboxes = initialCheckboxes[0]
-
-  // console.log(firstRowCheckboxes)
-
-  const [wideAreaCheckboxes, setWideAreaCheckboxes] = useState(
-    wideAreas.reduce((acc, wideArea, index) => {
-      acc[index] = false
-      return acc
-    }, {})
+  const [wideAreaCheck, setWideAreaCheck] = useState(wideAreas.map(() => false))
+  const [areaCheck, setAreaCheck] = useState(
+    Areas.map((items) => items.content.map(() => false))
   )
 
-  const [areaCheckboxes, setAreaCheckboxes] = useState(
-    Areas.map((area) => area.area.map(() => false))
+  const [expresswayCheck, setExpresswayCheck] = useState(
+    Expressway.map(() => false)
+  )
+  const [ICCheck, setICCheck] = useState(
+    IC.map((items) => items.content.map(() => false))
+  )
+
+  const [allConditionsCheck, setAllConditionsCheck] = useState(
+    allConditions.map(() => false)
+  )
+  const [conditionCheck, setConditionCheck] = useState(
+    Conditions.map((items) => items.content.map(() => false))
   )
 
   const handleWideAreaChange = (index) => {
-    setWideAreaCheckboxes((prevWideAreaCheckboxes) => {
-      const updatedWideAreaCheckboxes = { ...prevWideAreaCheckboxes }
-      updatedWideAreaCheckboxes[index] = !updatedWideAreaCheckboxes[index]
-      return updatedWideAreaCheckboxes
-    })
+    setWideAreaCheck((prevWideAreaCheck) => {
+      const updatedWideAreaCheck = [...prevWideAreaCheck]
+      updatedWideAreaCheck[index] = !updatedWideAreaCheck[index]
 
-    // Toggle the check status of corresponding areas
-    setAreaCheckboxes((prevAreaCheckboxes) => {
-      const updatedAreaCheckboxes = { ...prevAreaCheckboxes }
-      updatedAreaCheckboxes[index + 1] = areaCheckboxes[index + 1].map(
-        () => !wideAreaCheckboxes[index]
-      )
-      return updatedAreaCheckboxes
+      return updatedWideAreaCheck
+    })
+  }
+
+  const handleExpresswayChange = (index) => {
+    setExpresswayCheck((prevExpresswayCheck) => {
+      const updatedExpresswayCheck = [...prevExpresswayCheck]
+      updatedExpresswayCheck[index] = !updatedExpresswayCheck[index]
+
+      console.log(updatedExpresswayCheck)
+      return updatedExpresswayCheck
+    })
+  }
+
+  const handleAllConditionsChange = (index) => {
+    setAllConditionsCheck((prevAllConditionCheck) => {
+      const updatedAllConditionCheck = [...prevAllConditionCheck]
+      updatedAllConditionCheck[index] = !updatedAllConditionCheck[index]
+
+      console.log(updatedAllConditionCheck)
+      return updatedAllConditionCheck
     })
   }
 
@@ -58,23 +69,24 @@ const Filter = () => {
                   <ul>
                     <input
                       type="checkbox"
-                      id={`select-${index}`}
+                      id={`select-area-${index}`}
                       onChange={() => handleWideAreaChange(index)}
-                      checked={wideAreaCheckboxes[index]}
+                      checked={wideAreaCheck[index]}
                     />
-                    <label htmlFor={`select-${index}`}>{wideArea}</label>
+                    <label htmlFor={`select-area-${index}`}>{wideArea}</label>
                   </ul>
                 </th>
                 <FilterContent
-                  id={index + 1}
-                  area={Areas[index].area}
-                  wideAreaChecked={wideAreaCheckboxes[index]}
-                  areaCheckboxes={areaCheckboxes[index]}
-                  setAreaCheckboxes={(newCheckboxes) => {
-                    setAreaCheckboxes((prevAreaCheckboxes) => ({
-                      ...prevAreaCheckboxes,
-                      [index + 1]: newCheckboxes,
-                    }))
+                  id={`area-${index} + 1`}
+                  content={Areas[index].content}
+                  titleChecked={wideAreaCheck[index]}
+                  contentCheck={areaCheck[index]}
+                  setContentCheck={(newCheck) => {
+                    setAreaCheck((prevContentCheck) => {
+                      const updatedContentCheck = [...prevContentCheck]
+                      updatedContentCheck[index] = newCheck
+                      return updatedContentCheck
+                    })
                   }}
                 />
               </tr>
@@ -83,64 +95,78 @@ const Filter = () => {
         </table>
 
         {/* IC Search */}
-        <table className="table-header">
+        <table>
           <h2>最寄りのIC</h2>
         </table>
-        <table>
+        <table className="table-content">
           <tbody>
-            {IC.map((items) => (
-              <tr key={items.id}>
+            {Expressway.map((Expressway, index) => (
+              <tr key={index}>
                 <th>
                   <ul>
-                    <input type="checkbox" id={`select-${items.id}`} />
-                    <label htmlFor={`select-${items.id}`}>{items.title}</label>
+                    <input
+                      type="checkbox"
+                      id={`select-expressway-${index}`}
+                      onChange={() => handleExpresswayChange(index)}
+                      checked={expresswayCheck[index]}
+                    />
+                    <label htmlFor={`select-expressway-${index}`}>
+                      {Expressway}
+                    </label>
                   </ul>
                 </th>
-                <td>
-                  {items.content.map((content, contentIndex) => (
-                    <ul key={contentIndex}>
-                      <input
-                        type="checkbox"
-                        id={`select-${items.id}-${contentIndex}`}
-                      />
-                      <label htmlFor={`select-${items.id}-${contentIndex}`}>
-                        {content}
-                      </label>
-                    </ul>
-                  ))}
-                </td>
+                <FilterContent
+                  id={`IC-${index + 1}`}
+                  content={IC[index].content}
+                  titleChecked={expresswayCheck[index]}
+                  contentCheck={ICCheck[index]}
+                  setContentCheck={(newCheck) => {
+                    setICCheck((prevContentCheck) => {
+                      const updatedContentCheck = [...prevContentCheck]
+                      updatedContentCheck[index] = newCheck
+                      return updatedContentCheck
+                    })
+                  }}
+                />
               </tr>
             ))}
           </tbody>
         </table>
 
         {/* Condition Search */}
-        <table className="table-header">
+        <table>
           <h2>条件で探す</h2>
         </table>
-        <table>
+        <table className="table-content">
           <tbody>
-            {Conditions.map((items) => (
-              <tr key={items.id}>
+            {allConditions.map((allConditions, index) => (
+              <tr key={index}>
                 <th>
                   <ul>
-                    <input type="checkbox" id={`select-${items.id}`} />
-                    <label htmlFor={`select-${items.id}`}>{items.title}</label>
+                    <input
+                      type="checkbox"
+                      id={`select-condition-${index}`}
+                      onChange={() => handleAllConditionsChange(index)}
+                      checked={allConditionsCheck[index]}
+                    />
+                    <label htmlFor={`select-condition-${index}`}>
+                      {allConditions}
+                    </label>
                   </ul>
                 </th>
-                <td>
-                  {items.content.map((content, contentIndex) => (
-                    <ul key={contentIndex}>
-                      <input
-                        type="checkbox"
-                        id={`select-${items.id}-${contentIndex}`}
-                      />
-                      <label htmlFor={`select-${items.id}-${contentIndex}`}>
-                        {content}
-                      </label>
-                    </ul>
-                  ))}
-                </td>
+                <FilterContent
+                  id={`condition-${index + 1}`}
+                  content={Conditions[index].content}
+                  titleChecked={allConditionsCheck[index]}
+                  contentCheck={conditionCheck[index]}
+                  setContentCheck={(newCheck) => {
+                    setConditionCheck((prevContentCheck) => {
+                      const updatedContentCheck = [...prevContentCheck]
+                      updatedContentCheck[index] = newCheck
+                      return updatedContentCheck
+                    })
+                  }}
+                />
               </tr>
             ))}
           </tbody>

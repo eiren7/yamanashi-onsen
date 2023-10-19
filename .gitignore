@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+/src/assets/Checkbox.jsx
+/src/assets/Checkboxes.jsx

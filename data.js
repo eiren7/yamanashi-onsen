@@ -10,24 +10,24 @@ export const wideAreas = [
 
 export const Areas = [
   {
-    id: 1,
-    wideArea: wideAreas[0],
-    area: ["北杜市", "韮崎市"],
+    id: "e0f3fa60-6e7b-11ee-b962-0242ac120002",
+    title: wideAreas[0],
+    content: ["北杜市", "韮崎市"],
   },
   {
-    id: 2,
-    wideArea: wideAreas[1],
-    area: ["甲府市", "甲斐市", "中央市", "中巨摩郡 昭和町"],
+    id: "e0f3fdbc-6e7b-11ee-b962-0242ac120002",
+    title: wideAreas[1],
+    content: ["甲府市", "甲斐市", "中央市", "中巨摩郡 昭和町"],
   },
   {
-    id: 3,
-    wideArea: wideAreas[2],
-    area: ["甲州市", "山梨市", "笛吹市"],
+    id: "e0f3ffa6-6e7b-11ee-b962-0242ac120002",
+    title: wideAreas[2],
+    content: ["甲州市", "山梨市", "笛吹市"],
   },
   {
-    id: 4,
-    wideArea: wideAreas[3],
-    area: [
+    id: "e0f40154-6e7b-11ee-b962-0242ac120002",
+    title: wideAreas[3],
+    content: [
       "南都留郡 道志村",
       "都留市",
       "上野原市",
@@ -37,9 +37,9 @@ export const Areas = [
     ],
   },
   {
-    id: 5,
-    wideArea: wideAreas[4],
-    area: [
+    id: "e0f40532-6e7b-11ee-b962-0242ac120002",
+    title: wideAreas[4],
+    content: [
       "南巨摩郡 南部町",
       "南巨摩郡 早川町",
       "南巨摩郡 富士川町",
@@ -49,9 +49,9 @@ export const Areas = [
     ],
   },
   {
-    id: 6,
-    wideArea: wideAreas[5],
-    area: [
+    id: "e0f406f4-6e7b-11ee-b962-0242ac120002",
+    title: wideAreas[5],
+    content: [
       "富士吉田市",
       "南都留郡 富士河口湖町",
       "南都留郡 山中湖村",
@@ -61,31 +61,39 @@ export const Areas = [
     ],
   },
   {
-    id: 7,
-    wideArea: wideAreas[6],
-    area: ["山梨県全域"],
+    id: "e0f409c4-6e7b-11ee-b962-0242ac120002",
+    title: wideAreas[6],
+    content: ["山梨県全域"],
   },
+]
+
+export const allConditions = [
+  "泉質",
+  "富士山が見える",
+  "絶景",
+  "その他の温泉特徴",
+  "標高",
 ]
 
 export const Conditions = [
   {
-    id: 1,
-    title: "泉質",
+    id: "e0f40b5e-6e7b-11ee-b962-0242ac120002",
+    title: allConditions[0],
     content: ["単純温泉", "塩化物泉"],
   },
   {
-    id: 2,
-    title: "富士山が見える",
+    id: "e0f40e42-6e7b-11ee-b962-0242ac120002",
+    title: allConditions[1],
     content: ["湯船から見える", "敷地から見える"],
   },
   {
-    id: 3,
-    title: "絶景",
+    id: "e0f40fe6-6e7b-11ee-b962-0242ac120002",
+    title: allConditions[2],
     content: ["夜景が見える", "山が見える", "川が見える"],
   },
   {
-    id: 4,
-    title: "その他の温泉特徴",
+    id: "e0f411a8-6e7b-11ee-b962-0242ac120002",
+    title: allConditions[3],
     content: [
       "源泉かけ流し",
       "露天風呂",
@@ -101,16 +109,18 @@ export const Conditions = [
     ],
   },
   {
-    id: 5,
-    title: "標高",
+    id: "e0f41496-6e7b-11ee-b962-0242ac120002",
+    title: allConditions[4],
     content: ["0~300m未満", "300~700m未満", "700m以上"],
   },
 ]
 
+export const Expressway = ["中央自動車道", "東富士五湖道路", "中部横断自動車道"]
+
 export const IC = [
   {
-    id: 1,
-    title: "中央自動車道",
+    id: "e0f4164e-6e7b-11ee-b962-0242ac120002",
+    title: Expressway[0],
     content: [
       "上野原",
       "大月",
@@ -130,13 +140,13 @@ export const IC = [
     ],
   },
   {
-    id: 2,
-    title: "東富士五湖道路",
+    id: "e0f417de-6e7b-11ee-b962-0242ac120002",
+    title: Expressway[1],
     content: ["富士吉田", "山中湖"],
   },
   {
-    id: 3,
-    title: "中部横断自動車道",
+    id: "e0f4196e-6e7b-11ee-b962-0242ac120002",
+    title: Expressway[2],
     content: [
       "白根",
       "南アルプス",
