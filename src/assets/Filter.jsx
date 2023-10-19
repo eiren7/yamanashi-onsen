@@ -59,7 +59,7 @@ const Filter = () => {
         {/* Area Search */}
         <table>
           <h2>エリアで探す</h2>
-          <img src="../public/goto_map.png" alt="area-map" width="225" />
+          <img src="../../public/goto_map.png" alt="area-map" width="225" />
         </table>
         <table className="table-content">
           <tbody>
