@@ -1,22 +1,32 @@
+export const wideAreas = [
+  "A：清里・小淵沢・韮崎",
+  "B：甲府・昇仙峡",
+  "C：石和・勝沼・西沢渓谷",
+  "D：大月・都留",
+  "E：富士川流域・南アルプス",
+  "F：富士山・富士五湖",
+  "山梨県全域",
+]
+
 export const Areas = [
   {
     id: 1,
-    wideArea: "A：清里・小淵沢・韮崎",
+    wideArea: wideAreas[0],
     area: ["北杜市", "韮崎市"],
   },
   {
     id: 2,
-    wideArea: "B：甲府・昇仙峡",
+    wideArea: wideAreas[1],
     area: ["甲府市", "甲斐市", "中央市", "中巨摩郡 昭和町"],
   },
   {
     id: 3,
-    wideArea: "C：石和・勝沼・西沢渓谷",
+    wideArea: wideAreas[2],
     area: ["甲州市", "山梨市", "笛吹市"],
   },
   {
     id: 4,
-    wideArea: "D：大月・都留",
+    wideArea: wideAreas[3],
     area: [
       "南都留郡 道志村",
       "都留市",
@@ -28,7 +38,7 @@ export const Areas = [
   },
   {
     id: 5,
-    wideArea: "E：富士川流域・南アルプス",
+    wideArea: wideAreas[4],
     area: [
       "南巨摩郡 南部町",
       "南巨摩郡 早川町",
@@ -40,7 +50,7 @@ export const Areas = [
   },
   {
     id: 6,
-    wideArea: "F：富士山・富士五湖",
+    wideArea: wideAreas[5],
     area: [
       "富士吉田市",
       "南都留郡 富士河口湖町",
@@ -52,7 +62,7 @@ export const Areas = [
   },
   {
     id: 7,
-    wideArea: "山梨県全域",
+    wideArea: wideAreas[6],
     area: ["山梨県全域"],
   },
 ]
@@ -81,7 +91,7 @@ export const Conditions = [
       "露天風呂",
       "銭湯",
       "サウナ",
-      "貸切ブロ",
+      "貸切風呂",
       "うたせ湯",
       "にごり湯",
       "寝湯",

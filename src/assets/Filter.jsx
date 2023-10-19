@@ -1,16 +1,45 @@
-import { Areas } from "../../data"
+import { Areas, wideAreas } from "../../data"
 import { Conditions } from "../../data"
 import { IC } from "../../data"
 import { useState } from "react"
+import FilterContent from "./FilterContent"
 
-const FilterSearch = () => {
-  const [rowCheckboxes, setRowCheckboxes] = useState(Areas.map(() => false))
+const Filter = () => {
+  // const initialCheckboxes = Areas.map((areas) => ({
+  //   wideArea: false,
+  //   areas: areas.area.map(() => false),
+  // }));
 
-  // Function to handle row checkbox changes
-  const handleRowCheckboxChange = (rowIndex) => {
-    const updatedCheckboxes = [...rowCheckboxes]
-    updatedCheckboxes[rowIndex] = !updatedCheckboxes[rowIndex]
-    setRowCheckboxes(updatedCheckboxes)
+  // const firstRowCheckboxes = initialCheckboxes[0]
+
+  // console.log(firstRowCheckboxes)
+
+  const [wideAreaCheckboxes, setWideAreaCheckboxes] = useState(
+    wideAreas.reduce((acc, wideArea, index) => {
+      acc[index] = false
+      return acc
+    }, {})
+  )
+
+  const [areaCheckboxes, setAreaCheckboxes] = useState(
+    Areas.map((area) => area.area.map(() => false))
+  )
+
+  const handleWideAreaChange = (index) => {
+    setWideAreaCheckboxes((prevWideAreaCheckboxes) => {
+      const updatedWideAreaCheckboxes = { ...prevWideAreaCheckboxes }
+      updatedWideAreaCheckboxes[index] = !updatedWideAreaCheckboxes[index]
+      return updatedWideAreaCheckboxes
+    })
+
+    // Toggle the check status of corresponding areas
+    setAreaCheckboxes((prevAreaCheckboxes) => {
+      const updatedAreaCheckboxes = { ...prevAreaCheckboxes }
+      updatedAreaCheckboxes[index + 1] = areaCheckboxes[index + 1].map(
+        () => !wideAreaCheckboxes[index]
+      )
+      return updatedAreaCheckboxes
+    })
   }
 
   return (
@@ -23,34 +52,31 @@ const FilterSearch = () => {
         </table>
         <table className="table-content">
           <tbody>
-            {Areas.map((areas, rowIndex) => (
-              <tr key={areas.id}>
+            {wideAreas.map((wideArea, index) => (
+              <tr key={index}>
                 <th>
                   <ul>
                     <input
                       type="checkbox"
-                      id={`select-${areas.id}`}
-                      checked={rowCheckboxes[rowIndex]}
-                      onChange={() => handleRowCheckboxChange(rowIndex)}
+                      id={`select-${index}`}
+                      onChange={() => handleWideAreaChange(index)}
+                      checked={wideAreaCheckboxes[index]}
                     />
-                    <label htmlFor={`select-${areas.id}`}>
-                      {areas.wideArea}
-                    </label>
+                    <label htmlFor={`select-${index}`}>{wideArea}</label>
                   </ul>
                 </th>
-                <td>
-                  {areas.area.map((subArea, subAreaIndex) => (
-                    <ul key={subAreaIndex}>
-                      <input
-                        type="checkbox"
-                        id={`select-${areas.id}-${subAreaIndex}`}
-                      />
-                      <label htmlFor={`select-${areas.id}-${subAreaIndex}`}>
-                        {subArea}
-                      </label>
-                    </ul>
-                  ))}
-                </td>
+                <FilterContent
+                  id={index + 1}
+                  area={Areas[index].area}
+                  wideAreaChecked={wideAreaCheckboxes[index]}
+                  areaCheckboxes={areaCheckboxes[index]}
+                  setAreaCheckboxes={(newCheckboxes) => {
+                    setAreaCheckboxes((prevAreaCheckboxes) => ({
+                      ...prevAreaCheckboxes,
+                      [index + 1]: newCheckboxes,
+                    }))
+                  }}
+                />
               </tr>
             ))}
           </tbody>
@@ -124,4 +150,4 @@ const FilterSearch = () => {
   )
 }
 
-export default FilterSearch
+export default Filter

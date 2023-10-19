@@ -1,8 +1,8 @@
 const SearchButton = () => {
   return (
-    <div className="button-container">
-      <button>検索</button>
-      <button>クリア</button>
+    <div>
+      <button className="search">検索</button>
+      <button className="clear">クリア</button>
     </div>
   )
 }

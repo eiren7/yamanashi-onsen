@@ -1,6 +1,6 @@
 import "./App.css"
-import FilterSearch from "./assets/FilterSearch"
-import KeywordSearch from "./assets/Keyword"
+import Filter from "./assets/Filter"
+import Keyword from "./assets/Keyword"
 import SearchButton from "./assets/SearchButton"
 
 const App = () => {
@@ -11,8 +11,8 @@ const App = () => {
           <h1>温泉施設情報検索</h1>
         </table>
         <SearchButton />
-        <KeywordSearch />
-        <FilterSearch />
+        <Keyword />
+        <Filter />
         <SearchButton />
       </div>
     </div>
