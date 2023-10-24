@@ -9,7 +9,7 @@ const App = () => {
       <p>
         WARNING! This is a copysite of
         https://www.yamanashi-kankou.jp/search/onsen.html. <br />
-        All Rights belong to original creator and
+        All Rights belong to the original creator and
         公益社団法人やまなし観光推進機構.
       </p>
       <div className="table-container">
